@@ -125,15 +125,16 @@ wWinMain(
         goto Quit;
     }
 
+    /* No error */
+    iRet = 0;
+
     if (!ListenWindowsMsg(hInstance))
     {
         LogPrintf("[Main] Failed to listen Windows messages\n");
+        iRet = 1;
     }
 
     UninitBlockList(INFINITE);
-
-    /* No error */
-    iRet = 0;
 
 Quit:
     LogPrintf("[Main] Program exited with code %d\n", iRet);
