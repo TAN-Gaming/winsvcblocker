@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Company Example <company@example.com>
+ * Copyright (C) 2025 Thamatip Chitpong <tangaming123456@outlook.com>
  *
  * SPDX-License-Identifier: MPL-2.0
  * License-Filename: LICENSE.txt
@@ -10,6 +10,10 @@
 
 #include <windows.h>
 #include <strsafe.h>
+
+#ifndef _countof
+#define _countof(Arr) (sizeof(Arr) / sizeof(Arr[0]))
+#endif
 
 typedef PVOID BLOCKER;
 
@@ -27,6 +31,14 @@ BOOL
 DestroyServiceBlockers(
     DWORD Count,
     BLOCKER *Blockers,
+    DWORD Timeout);
+
+/* blocklist.c */
+BOOL
+InitBlockList(void);
+
+BOOL
+UninitBlockList(
     DWORD Timeout);
 
 /* log.c */

@@ -25,9 +25,21 @@ ListeningWindowProc(
         {
             if (wParam == TRUE)
             {
+                BOOL bClean;
+
                 LogPrintf("[Main] Windows session is being ended. Exiting\n");
-                LogPrintf("[Main] WM_ENDSESSION cleanup is unimplemented\n");
-                // TODO: Cleanup
+
+                /* MS Doc: WM_ENDSESSION respond timeout is 5 seconds */
+                bClean = UninitBlockList(4000);
+                if (!bClean)
+                {
+                    LogPrintf("[Main] Failed to stop service blockers\n");
+                    /* A blocker thread might be running, it's not safe to call UninitLog here */
+                }
+                else
+                {
+                    UninitLog();
+                }
             }
 
             return 0;
@@ -90,7 +102,6 @@ wWinMain(
     int nShowCmd)
 {
     HANDLE hAppMutex;
-    BLOCKER WUBlocker; // For testing only
     int iRet = 1;
 
     hAppMutex = CreateMutexW(NULL, TRUE, L"WinSvcBlocker");
@@ -108,21 +119,18 @@ wWinMain(
     InitLog();
     LogPrintf("Windows Service Blocker v0.0.1\n");
 
-    /* Block the Windows Update service */
-    WUBlocker = CreateAsyncServiceBlocker(L"wuauserv");
-    if (!WUBlocker)
+    if (!InitBlockList())
     {
-        LogPrintf("[Main] Failed to create blocker thread for service %ls\n", L"wuauserv");
+        LogPrintf("[Main] Failed to load blocker list\n");
         goto Quit;
     }
-    LogPrintf("[Main] Blocker created for service %ls (%p)\n", L"wuauserv", WUBlocker);
 
     if (!ListenWindowsMsg(hInstance))
     {
         LogPrintf("[Main] Failed to listen Windows messages\n");
     }
 
-    DestroyServiceBlocker(WUBlocker, INFINITE);
+    UninitBlockList(INFINITE);
 
     /* No error */
     iRet = 0;
