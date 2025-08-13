@@ -117,7 +117,7 @@ wWinMain(
     }
 
     InitLog();
-    LogPrintf("Windows Service Blocker v0.0.1\n");
+    LogPrintf2("Windows Service Blocker v0.0.1\n");
 
     if (!InitBlockList())
     {

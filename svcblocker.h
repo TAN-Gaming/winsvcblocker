@@ -7,6 +7,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <time.h>
 
 #include <windows.h>
 #include <strsafe.h>
@@ -50,5 +51,10 @@ UninitLog(void);
 
 void
 LogPrintf(
+    const char *Format,
+    ...);
+
+void
+LogPrintf2(
     const char *Format,
     ...);
