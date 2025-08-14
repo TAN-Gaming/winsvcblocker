@@ -58,16 +58,16 @@ InitBlockList(void)
         /* Remove trailing newline, if present */
         LineBuf[wcscspn(LineBuf, L"\n")] = L'\0';
 
-        BlockerList[BlockerCount] = CreateAsyncServiceBlocker(LineBuf);
+        BlockerList[BlockerCount] = CreateAsyncServiceBlocker(BlockerCount + 1, LineBuf);
         if (!BlockerList[BlockerCount])
         {
             bSuccess = FALSE;
             break;
         }
 
-        LogPrintf("[Main] Blocker created for service: %ls (%p)\n",
-                  LineBuf,
-                  BlockerList[BlockerCount]);
+        LogPrintf("[Main] Blocker created. ID: %lu, Target service: %ls\n",
+                  BlockerCount + 1,
+                  LineBuf);
 
         BlockerCount++;
     }

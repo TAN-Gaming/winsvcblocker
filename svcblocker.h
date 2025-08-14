@@ -21,6 +21,7 @@ typedef PVOID BLOCKER;
 /* blocker.c */
 BLOCKER
 CreateAsyncServiceBlocker(
+    DWORD dwBlockerId,
     LPCWSTR lpServiceName);
 
 BOOL

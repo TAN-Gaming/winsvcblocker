@@ -8,6 +8,7 @@
 #include "svcblocker.h"
 
 typedef struct _BLOCKER_DATA {
+    DWORD dwBlockerId;
     LPWSTR pszServiceName;
     HANDLE hThread;
     volatile LONG bRunning;
@@ -27,7 +28,7 @@ ServiceBlockerThread(
     DWORD dwSize;
     LONG bRunning;
 
-    LogPrintf("[Blocker: %p] Thread started\n", pData);
+    LogPrintf("[Blocker: %lu] Thread started\n", pData->dwBlockerId);
 
     hSCManager = OpenSCManagerW(NULL, NULL, SC_MANAGER_CONNECT);
     if (!hSCManager)
@@ -60,7 +61,7 @@ ServiceBlockerThread(
 
         if (ServiceInfo.dwCurrentState == SERVICE_RUNNING)
         {
-            LogPrintf("[Blocker: %p] Target service is running. Sending stop request\n", pData);
+            LogPrintf("[Blocker: %lu] Target service is running. Sending stop request\n", pData->dwBlockerId);
 
             /* Send stop request */
             if (!ControlService(hService,
@@ -91,12 +92,13 @@ Quit:
     if (hSCManager)
         CloseServiceHandle(hSCManager);
 
-    LogPrintf("[Blocker: %p] Thread exited. Error code: 0x%x\n", pData, dwError);
+    LogPrintf("[Blocker: %lu] Thread exited. Error code: 0x%x\n", pData->dwBlockerId, dwError);
     return 0;
 }
 
 BLOCKER
 CreateAsyncServiceBlocker(
+    DWORD dwBlockerId,
     LPCWSTR lpServiceName)
 {
     PBLOCKER_DATA pData;
@@ -105,6 +107,8 @@ CreateAsyncServiceBlocker(
     pData = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*pData));
     if (!pData)
         return NULL;
+
+    pData->dwBlockerId = dwBlockerId;
 
     cbSize = (wcslen(lpServiceName) + 1) * sizeof(WCHAR);
     pData->pszServiceName = HeapAlloc(GetProcessHeap(), 0, cbSize);
