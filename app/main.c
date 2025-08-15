@@ -5,7 +5,7 @@
  * License-Filename: LICENSE.txt
  */
 
-#include "svcblocker.h"
+#include "../common/svcblocker.h"
 
 static
 LRESULT
