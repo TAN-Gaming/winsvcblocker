@@ -101,23 +101,23 @@ wWinMain(
     LPWSTR lpCmdLine,
     int nShowCmd)
 {
-    HANDLE hAppMutex;
+    HANDLE hMainMutex;
     int iRet = 1;
 
-    hAppMutex = CreateMutexW(NULL, TRUE, L"WinSvcBlocker");
-    if (!hAppMutex)
+    hMainMutex = CreateMutexW(NULL, TRUE, L"Global\\WinSvcBlocker");
+    if (!hMainMutex)
     {
         return 1;
     }
-    else if (hAppMutex && GetLastError() == ERROR_ALREADY_EXISTS)
+    else if (hMainMutex && GetLastError() == ERROR_ALREADY_EXISTS)
     {
-        /* This is a single instance application */
-        CloseHandle(hAppMutex);
-        return 0;
+        /* Only one instance is allowed, either app or service */
+        CloseHandle(hMainMutex);
+        return 1;
     }
 
     InitLog();
-    LogPrintf2("Windows Service Blocker v0.0.1\n");
+    LogPrintf2("Windows Service Blocker v0.0.1 (Running as application)\n");
 
     if (!InitBlockList())
     {
@@ -140,8 +140,8 @@ Quit:
     LogPrintf("[Main] Program exited with code %d\n", iRet);
     UninitLog();
 
-    ReleaseMutex(hAppMutex);
-    CloseHandle(hAppMutex);
+    ReleaseMutex(hMainMutex);
+    CloseHandle(hMainMutex);
 
     return iRet;
 }
