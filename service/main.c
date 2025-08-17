@@ -172,12 +172,9 @@ Quit1:
 
 /* Service program entry point */
 int
-WINAPI
-wWinMain(
-    HINSTANCE hInstance,
-    HINSTANCE hPrevInstance,
-    LPWSTR lpCmdLine,
-    int nShowCmd)
+wmain(
+    int argc,
+    wchar_t *argv[])
 {
     SERVICE_TABLE_ENTRYW SvcTable[] = {
         { g_SvcName, ServiceMain },
