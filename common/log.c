@@ -10,9 +10,18 @@
 static CRITICAL_SECTION g_csLogFile;
 static FILE *g_pLogFile;
 
+static
+void
+BackupPrevLog(void)
+{
+    CopyFileW(L"svcblocker.log", L"svcblocker_prev.log", FALSE);
+}
+
 void
 InitLog(void)
 {
+    BackupPrevLog();
+
     g_pLogFile = fopen("svcblocker.log", "w");
     InitializeCriticalSection(&g_csLogFile);
 }
