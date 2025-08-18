@@ -1,0 +1,7 @@
+# Specify service names to block here, line by line
+
+# Windows update service
+wuauserv
+
+# Windows telemetry service
+DiagTrack
