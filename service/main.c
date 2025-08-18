@@ -16,7 +16,9 @@ static SERVICE_STATUS_HANDLE g_SvcStatusHandle;
 
 static HANDLE g_hStopEvent;
 
-/* The default working dir for a Windows service is %WinDir%\System32 so this is needed */
+/* The default working directory for a Windows service is %WinDir%\System32
+ * so this is needed for relative paths to work.
+ */
 static
 BOOL
 SetSvcWorkingDir(void)
