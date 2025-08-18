@@ -32,7 +32,7 @@ SetSvcWorkingDir(void)
     if (ptr)
     {
         /* Keep trailing backslash if this is the drive root folder */
-        if (ptr != szPath && *(ptr - 1) == L':')
+        if (ptr > szPath && *(ptr - 1) == L':')
         {
             ptr++;
         }
