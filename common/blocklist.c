@@ -15,7 +15,7 @@ static BLOCKER *g_BlockerList;
 
 static
 void
-TrimString(
+TrimWhiteSpaces(
     LPWSTR str)
 {
     size_t len = wcslen(str);
@@ -42,6 +42,21 @@ TrimString(
     str[len] = L'\0';
 }
 
+static
+void
+TrimLine(
+    LPWSTR Buffer)
+{
+    /* Trim comment */
+    WCHAR *pComment = wcschr(Buffer, L'#');
+    if (pComment)
+    {
+        *pComment = L'\0';
+    }
+
+    TrimWhiteSpaces(Buffer);
+}
+
 BOOL
 InitBlockList(void)
 {
@@ -57,10 +72,10 @@ InitBlockList(void)
 
     while (fgetws(LineBuf, _countof(LineBuf), pBlockListFile))
     {
-        TrimString(LineBuf);
+        TrimLine(LineBuf);
 
-        /* Skip empty lines and comments */
-        if (LineBuf[0] == L'\0' || LineBuf[0] == L'#')
+        /* Skip empty lines */
+        if (LineBuf[0] == L'\0')
             continue;
 
         if (BlockerCount == 0)
