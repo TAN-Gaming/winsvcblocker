@@ -12,6 +12,7 @@ A simple program for blocking unwanted Windows services.
 - Download release builds from the release section or build from source.
 - Extract the downloaded files to any folder you want.
 - Create a `blocklist.txt` file based on the provided template, specify the service names you want to block.
+- Put the created `blocklist.txt` file in the same folder as `svcblocker.exe` (for application) or `svcblocker_svc.exe` (for service).
 - If you want to run the program as a portable application without installing anything, run `svcblocker.exe`.
 - If you want to run the program as a Windows service and automatically launch when your computer starts up, run `install_service.bat` as administrator to install the service.
 - To uninstall the service, run `uninstall_service.bat` as administrator.
