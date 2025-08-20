@@ -18,5 +18,6 @@ A simple program for blocking unwanted Windows services.
 
 ## Notes
 - Administrator privileges are required to use this program.
+- Only one instance running is allowed, either app or service.
 - `install_service.bat` must be in the same folder as `svcblocker_svc.exe` to work.
 - If you're running Windows 11 with fast startup enabled, don't install service on another drive other than the system drive (C:), otherwise automatic start may not work correctly.
