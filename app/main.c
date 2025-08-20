@@ -117,7 +117,7 @@ wWinMain(
     }
 
     InitLog();
-    LogPrintf2("Windows Service Blocker v0.0.1 (Running as application)\n");
+    LogPrintf2("Windows Service Blocker v1.0.0 (Running as application)\n");
 
     if (!InitBlockList())
     {

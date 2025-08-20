@@ -6,8 +6,8 @@ CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "svcblocker.exe.manifest"
 
 /* EXE version info */
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 0,0,1,0
-PRODUCTVERSION 0,0,1,0
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
 FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 FILEFLAGS VS_FF_DEBUG
@@ -24,12 +24,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "TANGaming"
             VALUE "FileDescription", "WinSvcBlocker"
-            VALUE "FileVersion", "0.0.1.0"
+            VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "svcblocker"
             VALUE "LegalCopyright", "Copyright (C) 2025 TANGaming <https://github.com/TAN-Gaming>"
             VALUE "OriginalFilename", "svcblocker.exe"
             VALUE "ProductName", "WinSvcBlocker"
-            VALUE "ProductVersion", "0.0.1.0"
+            VALUE "ProductVersion", "1.0.0.0"
         END
     END
     BLOCK "VarFileInfo"
