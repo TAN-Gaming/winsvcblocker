@@ -168,6 +168,12 @@ DestroyServiceBlockers(
     DWORD dwResult;
     HANDLE *WaitList;
 
+    if (Count == 0)
+    {
+        /* Nothing to do */
+        return TRUE;
+    }
+
     WaitList = HeapAlloc(GetProcessHeap(), 0, Count * sizeof(HANDLE));
     if (!WaitList)
         return FALSE;
