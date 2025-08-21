@@ -8,7 +8,7 @@ A simple program for blocking unwanted Windows services.
 - Each service blocker works asynchronously.
 - The program is available in 2 types, as an application and a service.
 - The target services will be blocked regardless of software updates or reinstalls. As long as the service names don't change, they will be blocked.
-- Allows you to escape from the situation where Windows or software updates couldn't be disabled and a buggy update trying to reinstall itself every time it is uninstalled.
+- Allows you to escape from the situation where Windows or software updates cannot be disabled and a buggy update trying to reinstall itself every time it is uninstalled.
 
 ## How to use
 - Download release builds from the [release section][release_link] or build from source.
