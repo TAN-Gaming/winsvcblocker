@@ -12,6 +12,8 @@
 #include <windows.h>
 #include <strsafe.h>
 
+#include "version.h"
+
 #ifndef _countof
 #define _countof(Arr) (sizeof(Arr) / sizeof(Arr[0]))
 #endif

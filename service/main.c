@@ -130,7 +130,7 @@ ServiceMain(
     }
 
     InitLog();
-    LogPrintf2("Windows Service Blocker v1.0.0 (Running as service)\n");
+    LogPrintf2("Windows Service Blocker v%s (Running as service)\n", WINSVCBLOCKER_VERSION);
 
     g_hStopEvent = CreateEventW(NULL, TRUE, FALSE, NULL);
     if (!g_hStopEvent)

@@ -75,6 +75,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="common/svcblocker.h" />
+		<Unit filename="common/version.h" />
 		<Unit filename="service/main.c">
 			<Option compilerVar="CC" />
 			<Option target="Service-Debug" />

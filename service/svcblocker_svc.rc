@@ -1,9 +1,11 @@
 #include <winver.h>
 
+#include "../common/version.h"
+
 /* EXE version info */
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 1,0,0,0
-PRODUCTVERSION 1,0,0,0
+FILEVERSION WINSVCBLOCKER_RES_VERSION
+PRODUCTVERSION WINSVCBLOCKER_RES_VERSION
 FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 FILEFLAGS VS_FF_DEBUG
@@ -20,12 +22,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "TANGaming"
             VALUE "FileDescription", "WinSvcBlocker Service"
-            VALUE "FileVersion", "1.0.0.0"
+            VALUE "FileVersion", WINSVCBLOCKER_RES_VERSION_STR
             VALUE "InternalName", "svcblocker_svc"
-            VALUE "LegalCopyright", "Copyright (C) 2025 TANGaming <https://github.com/TAN-Gaming>"
+            VALUE "LegalCopyright", WINSVCBLOCKER_COPYRIGHT
             VALUE "OriginalFilename", "svcblocker_svc.exe"
             VALUE "ProductName", "WinSvcBlocker"
-            VALUE "ProductVersion", "1.0.0.0"
+            VALUE "ProductVersion", WINSVCBLOCKER_RES_VERSION_STR
         END
     END
     BLOCK "VarFileInfo"
