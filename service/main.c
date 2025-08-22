@@ -152,6 +152,7 @@ ServiceMain(
 
     /* Wait for the service to stop */
     WaitForSingleObject(g_hStopEvent, INFINITE);
+    LogPrintf("[Main] Service stop request received. Stopping\n");
 
     UninitBlockList(INFINITE);
 
